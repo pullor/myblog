@@ -40,7 +40,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="inputSubject">文章标题</label>
-                                <input type="text" name="subject" placeholder="标题" id="inputSubject" class="form-control">
+                                <input type="text" name="subject" id="inputSubject" class="form-control" value="<%= data.title%>">
                             </div>
                             <div class="form-group">
                                 <label for="inputCover">文章封面</label>
@@ -48,11 +48,11 @@
                             </div>
                             <div class="form-group">
                                 <label for="inputSummary">文章摘要</label>
-                                <textarea name="summary" placeholder="摘要" id="inputSummary" class="form-control"></textarea>
+                                <textarea name="summary" id="inputSummary" class="form-control"><%= data.abstract%></textarea>
                             </div>
                             <div class="form-group">
                                 <label for="inputContent">文章内容</label>
-                                <textarea name="content" class="form-control" id="inputContent" cols="30" placeholder="内容" rows="10"></textarea>
+                                <textarea name="content" class="form-control" id="inputContent" cols="30" rows="10"><%= data.content%></textarea>
                             </div>
                             <div class="form-group">
                                 <label for="inputTag">文章标签</label>

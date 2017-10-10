@@ -7,7 +7,7 @@ router.get('/', function(req, res, next) {
 });
 router.get('/logout', function(req, res, next) {
   req.session.isLogin = null
-  res.render('admin/login');
+  res.redirect('/login');
 });
 
 module.exports = router;

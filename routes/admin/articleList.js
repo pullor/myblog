@@ -28,7 +28,23 @@ router.get('/article_add', function(req, res, next) {
     res.render('admin/article_add');
 });
 router.get('/article_edit', function(req, res, next) {
-    res.render('admin/article_edit');
+    let id = req.query.id
+    MongoClient.connect(url, function (err, db) {
+        if (err) {
+            console.log(err)
+        } else {
+            let articles = db.collection('articles')
+            articles.find({_id:ObjectId(id)}).toArray(function (err, result) {
+                if (err) {
+                    res.send(err)
+                } else {
+                    console.log(result[0])
+                    res.render('admin/article_edit',{data:result[0]})
+                }
+            })
+            console.log('success connect')
+        }
+    })
 });
 
 router.post('/',function(req, res, next) {

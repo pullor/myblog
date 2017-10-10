@@ -39,7 +39,7 @@ app.use('/', index);
 app.use('/users', users);
 app.use('/articles',articles);
 
-// app.use('/admin',checkLogin);
+app.use('/admin',checkLogin);
 app.use('/admin',admin);
 
 app.use('/categoryList',checkLogin);
