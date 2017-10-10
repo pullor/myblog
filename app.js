@@ -15,6 +15,13 @@ var articleList = require('./routes/admin/articleList')
 
 var app = express();
 
+var session = require('express-session');
+app.use(session({
+  secret: 'myblog',
+  resave: false,
+  saveUninitialized: true,
+  cookie: {}
+}))
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.engine('html',require('ejs').__express);
@@ -31,9 +38,17 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', index);
 app.use('/users', users);
 app.use('/articles',articles);
+
+// app.use('/admin',checkLogin);
 app.use('/admin',admin);
+
+app.use('/categoryList',checkLogin);
 app.use('/login',login);
+
+app.use('/categoryList',checkLogin);
 app.use('/categoryList',categoryList);
+
+app.use('/articleList',checkLogin);
 app.use('/articleList',articleList);
 
 
@@ -55,4 +70,11 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+function checkLogin(req, res,next) {
+  if(!req.session.isLogin){
+    res.redirect('/login')
+    console.log(111)
+  }
+  next();
+}
 module.exports = app;
