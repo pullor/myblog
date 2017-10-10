@@ -4,7 +4,7 @@
 var express = require('express');
 var router = express.Router();
 const MongoClient = require('mongodb').MongoClient;
-const url = 'mongodb://localhost:27017/myblog'
+const url = 'mongodb://47.95.3.214:27017/myblog'
 const ObjectId = require('mongodb').ObjectId;
 
 router.get('/', function(req, res, next) {
@@ -27,7 +27,9 @@ router.get('/', function(req, res, next) {
 router.get('/article_add', function(req, res, next) {
     res.render('admin/article_add');
 });
-
+router.get('/article_edit', function(req, res, next) {
+    res.render('admin/article_edit');
+});
 
 router.post('/',function(req, res, next) {
     var title = req.body.subject
@@ -35,6 +37,7 @@ router.post('/',function(req, res, next) {
     var content = req.body.content
     var status = req.body.submit
     var category_id = req.body.category_id
+    var time = new Date()
     // var data = {
     //     title: title,
     //     abstract: abstract,
@@ -48,7 +51,7 @@ router.post('/',function(req, res, next) {
             console.log(err)
         } else {
             let articles = db.collection('articles')
-            articles.insert({title:title,abstract:abstract,content:content,status:status,solt:category_id},function (err, result) {
+            articles.insert({title:title,abstract:abstract,content:content,status:status,solt:category_id,time: time},function (err, result) {
                 if (err) {
                     res.send(err)
                 } else {

@@ -23,7 +23,7 @@
                             <div class="box">
                                 <div class="box-header">
                                     <h3 class="box-title"></h3>
-                                    <a href="http://localhost/blog/admin/article.php?a=add" class="btn btn-default pull-right">添加文章</a>
+                                    <a href="/articleList/article_add" class="btn btn-default pull-right">添加文章</a>
                                 </div><!-- /.box-header -->
                                 <div class="box-body">
                                     <table class="table table-bordered">
@@ -41,10 +41,10 @@
                                             <td><%= idx+1 %></td>
                                             <td><%= item.title %></td>
                                             <td><%= item.status %></td>
-                                            <td><%=  %></td>
+                                            <td><%= item.time.toLocaleString() %></td>
                                             <td><%= item.solt %></td>
                                             <td>
-                                                <a href="/categoryList/category_edit?id=<%= item._id%>" class="btn btn-default" title="编辑"><span class="fa fa-edit"></span> 编辑</a>
+                                                <a href="/articleList/article_edit?id=<%= item._id%>" class="btn btn-default" title="编辑"><span class="fa fa-edit"></span> 编辑</a>
                                                 <a href="/articleList/delete?id=<%= item._id%>" class="btn btn-default" title="删除" onclick="return confirm('是否删除？');"><span class="fa fa-trash-o"></span> 删除</a>
                                             </td>
                                         </tr>
